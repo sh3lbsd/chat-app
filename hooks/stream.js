@@ -8,9 +8,13 @@ export default function useEventStream(url) {
     //EventSource is a js API for responding to Server Sent Events
     const stream = new EventSource(url);
     // callback for setting state from data received from EventSource
+    // error handling
     const send = e => {
-      if (e?.data && typeof e?.data === 'string') {
-        setData(JSON.parse(e.data));
+      try {
+        const data = JSON.parse(e?.data);
+        setData(data);
+      } catch (e) {
+        console.error(e);
       }
     };
     // listen for "message" event and call "send" when received
