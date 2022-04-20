@@ -107,6 +107,7 @@ const Home = () => {
               if (user.id) return;
               user.id = id;
               localStorage.setItem('user', JSON.stringify(user));
+              setUser(user);
             }}
           >
             Send
