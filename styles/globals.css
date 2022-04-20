@@ -1,0 +1,107 @@
+html,
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: #f1c0e840;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+main {
+  padding: 2em;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.sign-in {
+  background: #cfbaf0;
+  position: absolute;
+  right: 0;
+}
+
+.sign-in .submit {
+  color: #9966eb;
+}
+
+.text-field {
+  color: #9966eb;
+}
+
+.text-field .send {
+  padding: 10px;
+  position: absolute;
+  right: 0;
+}
+
+.send {
+  color: #9966eb;
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  bottom: 2em;
+  left: 2em;
+}
+
+.send .button {
+  flex: 1;
+}
+
+.send .text-field {
+  flex: 2;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  margin: 0;
+  padding: 0;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+li {
+  border-radius: 8px;
+  border: 1px solid #ffcfd2;
+  list-style: none;
+  padding: 0.5em;
+  background: #fbf8ccb9;
+  color: #c4a9f0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+li.mine {
+  align-self: flex-end;
+}
+
+.msg {
+  font-size: x-large;
+}
+
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+  color: #f8b3b8;
+}
+
+.msg-info strong {
+  color: #a3c4f3;
+}
