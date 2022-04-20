@@ -52,7 +52,6 @@ const Home = () => {
           <Button
             disabled={!user.name}
             variant="contained"
-            className="submit"
             onClick={() => {
               localStorage.setItem('user', JSON.stringify(user));
               setIsSignedIn(true);
@@ -98,7 +97,6 @@ const Home = () => {
           />
 
           <Button
-            className="button"
             disabled={!message}
             variant="contained"
             onClick={async () => {

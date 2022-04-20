@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background: #f1c0e840;
+  background: linear-gradient(90deg, #6fd5f7, #aeeab4af, #fdc8f3);
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -30,15 +30,31 @@ a {
   width: 100%;
   display: flex;
   gap: 2em;
+  padding-bottom: 2em;
 }
 
-.sign-in .submit {
-  background: #cfbaf0;
-  border-radius: 8px;
-  border: 1px solid #f1c0e8;
-  color: #fbf8cc;
+.MuiFormLabel-root {
+  color: #241d52;
+}
+
+.MuiButtonBase-root {
+  background-color: #241d52;
+  color: #fce0eb;
+}
+
+
+.MuiInputBase-root:after {
+  border-bottom: 2px solid #241d52;
+  color: #241d52;
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: #241d52;
+}
+
+.MuiInput-input {
   flex: 1;
-  padding: 16px;
+  color: #241d52;
 }
 
 .sign-in .text-field {
@@ -81,20 +97,22 @@ ul {
 
 li {
   border-radius: 8px;
-  border: 1px solid #ffcfd2;
+  border: 2px solid #241d52;
   list-style: none;
   padding: 0.5em;
-  background: #fbf8ccb9;
-  color: #c4a9f0;
+  background: #7feef8;
+  color: #241d52;
+  /* text-shadow: -1px -1px 0 #a478ea, 1px -1px 0 #a478ea, -1px 1px 0 #a478ea, 1px 1px 0 #a478ea; */
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: .5em;
+  gap: 0.5em;
 }
 
 li.mine {
   align-self: flex-end;
-  background: rgb(245, 248, 252);
+  background: #98f5e1;
 }
 
 .msg {
@@ -106,11 +124,14 @@ li.mine {
   justify-content: space-between;
   align-items: flex-end;
   gap: 2em;
-  color: #f8b3b8;
+  color: #cfbaf0;
 }
 
 .msg-info strong {
-  color: #a3c4f3;
+  color: #fce0eb;
+  text-shadow: -1px -1px 0 #241d52, 1px -1px 0 #241d52, -1px 1px 0 #241d52,
+    1px 1px 0 #241d52;
+  font-size: smaller;
 }
 
 em {
