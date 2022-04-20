@@ -1,76 +1,27 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from 'react';
 
-const Streams = {};
-
-function Stream(path) {
-  if (Streams[path]) return Streams[path];
-  const src = new EventSource(path);
-  const callbacks = {
-    message: {},
-    error: {}
-  };
-  function handler(e) {
-    const funcs = callbacks[e.type];
-    for (const k in funcs) funcs[k](e);
-  }
-  return {
-    add: function (name, callback) {
-      const index = Object.keys(callbacks[name]).length;
-      callbacks[name][index] = callback;
-      if (index === 0) {
-        src.addEventListener(name, handler);
-        Streams[path] = this;
-      }
-      return index;
-    },
-    remove: function (name, index) {
-      delete callbacks[name][index];
-      if (!Object.keys(callbacks[name]).length) {
-        src.removeEventListener(name, handler);
-        src.close();
-        delete Streams[path];
-      }
-    }
-  };
-}
-
-export default function useEventStream(path) {
-  const [[messages, loading, errors], set] = useState([[], true, []]);
-
-  const setData = useCallback(
-    (e) =>
-      set(([old, _, errors]) => [
-        old.concat(JSON.parse(e.data)),
-        false,
-        errors
-      ]),
-    []
-  );
-
-  const setErrors = useCallback(
-    (e) =>
-      set(([messages, _, errors]) => [
-        messages,
-        false,
-        errors.concat(JSON.parse(e.data))
-      ]),
-    []
-  );
-
+// A react hook for managing state of data received from an EventSource
+export default function useEventStream(url) {
+  const [data, setData] = useState();
+  //update state
   useEffect(() => {
-    const stream = Stream(path);
-    const id = stream.add("message", setData);
-    const errorId = stream.add("error", setErrors);
-    return () => {
-      stream.remove("message", id);
-      stream.remove("error", errorId);
+    //EventSource is a js API for responding to Server Sent Events
+    const stream = new EventSource(url);
+    // callback for setting state from data received from EventSource
+    const send = e => {
+      if (e?.data && typeof e?.data === 'string') {
+        setData(JSON.parse(e.data));
+      }
     };
-  }, [path, setData, setErrors]);
-  return {
-    data: messages[messages.length - 1],
-    error: errors[errors.length - 1],
-    messages,
-    loading,
-    errors
-  };
+    // listen for "message" event and call "send" when received
+    stream.addEventListener('message', send);
+    // clean up function
+    return () => {
+      // whenever this hook is no longer used, remove event listener
+      stream.removeEventListener('message', send);
+    };
+    // what we put in this array determines when this effect runs
+  }, [url]);
+  //return state
+  return data;
 }

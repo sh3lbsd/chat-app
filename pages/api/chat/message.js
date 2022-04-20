@@ -1,14 +1,19 @@
 import realtime from 'firebase/admin';
 
-const db = realtime.ref('chat');
+// get reference to /chat path from realtime database
+const database = realtime.ref('chat');
 
-export default async (req, res) => {
-  const { text, user } = req.body;
+export default async (request, response) => {
+  //receive data from our body
+  const { text, user } = request.body;
 
+  // if the user does not have an id, create a new id for the user
   if (!user.id) {
-    user.id = db.push().getKey();
+    //how we get a unique id from firebase
+    user.id = database.push().getKey();
   }
-
-  await db.push({ text, timestamp: Date.now(), user });
-  return res.status(200).send(user.id);
+  // push message with user to database
+  await database.push({ text, timestamp: Date.now(), user });
+  // respond with user id
+  return response.status(200).send(user.id);
 };

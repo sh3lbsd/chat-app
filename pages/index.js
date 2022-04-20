@@ -4,12 +4,14 @@ import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 
+// post chat message to server
+// returns user id so that we can save it in localStorage (browser cache)
 function post(message) {
   return fetch('/api/chat/message', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
+      Accept: 'application/text',
     },
     body: JSON.stringify(message),
   }).then(r => r.text());
@@ -24,7 +26,7 @@ const Home = () => {
     setUser(user);
     setIsSignedIn(user.id);
   }, []);
-  const { data } = useEventStream('/api/chat');
+  const data = useEventStream('/api/chat');
   useEffect(() => {
     window.scrollTo({
       top: document.body.scrollHeight,

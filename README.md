@@ -1,10 +1,29 @@
-We would like you to create a chat application in the language of your choice. This doesn’t have to be a web-based client or even have a UI, but you should be able to connect at least two users to the same chat and be able to send messages between them. We're looking for you to showcase your talents wherever you feel most comfortable either in frontend, backend or both. Optionally, add features that improve the user experience.
+# Chat App
+This is a chat application that is built using Firebase Realtime Database, Next.js, and Server Sent Events (SSE). There is no sign in required, simply enter your name to chat. 
 
-You are free to use third-party libraries, and any technologies that would help you implement this, but it should be your own code that we look at and not a pre-built solution. You are also free to use the internet to find any information you may need. What we are looking for is to see how you as an engineer design your solution to the challenge and what the resulting code looks like. Make considerations as you implement this challenge as if it were to be a longer-term project that you want to maintain and extend in the future.
+# Data Storage
+A unique user ID is created and stored in your browser. If you use a different browser or device, or clear your cache then all of your own data will be gone. No persistent user storage, all data is stored in the browser locally. 
 
-If you have questions about the project or aren't sure how to get started, we are available for a quick meeting on Google Hangouts to explain further and answer questions, just let me know.
-
-A portion of the interview tomorrow will be discussing your work, so be prepared to show us your completed project in some manner. You also may be asked to make changes to it. If you aren't sure how to make this happen, let me know and we can discuss options.
-
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
 
+# Server Sent Events
+We use the built in API route structure, provided by Next.js, to build an API route that streams data in real time to the client.
+The chat streaming API is located in
+pages/api/chat/index.js
+
+https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+
+# Server Sent Events vs. Web-sockets
+
+## Pros
+Server Sent Events are much simplier to set up without using a library as well as it is easier to ensure that the application works in managed cloud environments, such as Google Cloud Run, where this application is deployed.
+
+## Cons
+- Unilateral communication.(The data is only sent one way. From the Server to the client)
+  - Websockets are bi-directional. (Both can communicate with eachother)
+- No Internet Explorer(IE) support. 
+- Max of 6 client connections from a single host.
+
+# Real Time Database
+The client can communicate with the server by sending messages to Real Time Database. We use the Firebase Admin SDK to listen for real time updates and push data to the database.
