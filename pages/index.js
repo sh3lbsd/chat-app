@@ -25,6 +25,12 @@ const Home = () => {
     setIsSignedIn(user.id);
   }, []);
   const { data } = useEventStream('/api/chat');
+  useEffect(() => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
+  }, [data]);
   return (
     <main>
       <Head>
@@ -33,10 +39,11 @@ const Home = () => {
       {!isSignedIn && (
         <div className="sign-in">
           <TextField
+            className="text-field"
             value={user.name}
             onChange={e => {
               const value = e.currentTarget.value;
-              if (value) setUser({ ...user, name: value });
+              setUser({ ...user, name: value });
             }}
             label="Enter your name"
             variant="standard"
@@ -44,6 +51,7 @@ const Home = () => {
 
           <Button
             disabled={!user.name}
+            variant="contained"
             className="submit"
             onClick={() => {
               localStorage.setItem('user', JSON.stringify(user));
@@ -58,11 +66,20 @@ const Home = () => {
         {Object.entries(data ?? {})
           .sort(([_, msg1], [__, msg2]) => msg1.timestamp - msg2.timestamp)
           .map(([id, msg]) => (
-            <li key={id} className={msg.user.id === user.id ? 'mine' : 'theirs'}>
+            <li
+              key={id}
+              className={msg.user.id === user.id ? 'mine' : 'theirs'}
+            >
               <div className="msg">{msg.text}</div>
               <div className="msg-info">
                 <strong>{msg.user.name}</strong>
-                <em>{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</em>
+                <em>
+                  {new Date(msg.timestamp).toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                  })}
+                </em>
               </div>
             </li>
           ))}
@@ -72,11 +89,9 @@ const Home = () => {
           <TextField
             value={message}
             className="text-field"
-            multiline
-            maxRows={4}
             onChange={e => {
               const value = e.currentTarget.value;
-              if (value) setMessage(value);
+              setMessage(value);
             }}
             label="chat!"
             variant="standard"
@@ -85,6 +100,7 @@ const Home = () => {
           <Button
             className="button"
             disabled={!message}
+            variant="contained"
             onClick={async () => {
               const id = await post({ text: message.trim(), user });
               setMessage('');

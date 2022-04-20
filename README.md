@@ -7,20 +7,4 @@ If you have questions about the project or aren't sure how to get started, we ar
 A portion of the interview tomorrow will be discussing your work, so be prepared to show us your completed project in some manner. You also may be asked to make changes to it. If you aren't sure how to make this happen, let me know and we can discuss options.
 
 
-Example:
-
-“Hey! How’s It going? Are you working on that exercise Ezoic sent?”
-
-“Pretty good. This challenge is open-ended though so I’m not sure how much code to write.”
-
-“I think a functional app and maybe one or two simple features beyond just sending lines of text is really what they’re looking for.”
-
-“Oh cool. That really cleared it up the task for me. How long do you think I should work on it?”
-
-“Just a few hours. They aren’t looking for anything huge, just an example of how you work.”
-
-“Thanks! I’ve totally got this, and I’m excited for my interview tomorrow. Now I’ve just got to write the code.”
-
-“Good luck tomorrow! I hear the engineers at Ezoic are friendly and have a good sense of humor so there’s no reason to be nervous.”
-
 

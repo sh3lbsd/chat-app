@@ -13,6 +13,7 @@ body {
 
 main {
   padding: 2em;
+  padding-bottom: 6em;
   width: 100%;
 }
 
@@ -26,32 +27,36 @@ a {
 }
 
 .sign-in {
-  background: #cfbaf0;
-  position: absolute;
-  right: 0;
+  width: 100%;
+  display: flex;
+  gap: 2em;
 }
 
 .sign-in .submit {
-  color: #9966eb;
+  background: #cfbaf0;
+  border-radius: 8px;
+  border: 1px solid #f1c0e8;
+  color: #fbf8cc;
+  flex: 1;
+  padding: 16px;
+}
+
+.sign-in .text-field {
+  flex: 2;
 }
 
 .text-field {
-  color: #9966eb;
-}
-
-.text-field .send {
-  padding: 10px;
-  position: absolute;
-  right: 0;
+  color: #fbf8cc;
 }
 
 .send {
   color: #9966eb;
-  width: 100vw;
   display: flex;
   position: fixed;
   bottom: 2em;
   left: 2em;
+  right: 2em;
+  gap: 2em;
 }
 
 .send .button {
@@ -89,6 +94,7 @@ li {
 
 li.mine {
   align-self: flex-end;
+  background: rgb(245, 248, 252);
 }
 
 .msg {
@@ -98,10 +104,15 @@ li.mine {
 .msg-info {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   gap: 2em;
   color: #f8b3b8;
 }
 
 .msg-info strong {
   color: #a3c4f3;
+}
+
+em {
+  font-size: small;
 }
