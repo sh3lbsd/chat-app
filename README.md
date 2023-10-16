@@ -9,8 +9,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
 # Server Sent Events
 We use the built in API route structure, provided by Next.js, to build an API route that streams data in real time to the client.
-The chat streaming API is located in
-pages/api/chat/index.js
+The chat streaming API is located in: `pages/api/chat/index.js`
 
 https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
 
@@ -27,3 +26,9 @@ Server Sent Events are much simplier to set up without using a library as well a
 
 # Real Time Database
 The client can communicate with the server by sending messages to Real Time Database. We use the Firebase Admin SDK to listen for real time updates and push data to the database.
+
+## Files
+* firebase admin sdk configuration: `firebase/admin.js`
+* useEventStream React hook: `hooks/stream.js`
+* Server Sent Event api: `pages/api/chat/index.js`
+* Server that pushes messages to realtime database: `pages/api/chat/message.js`

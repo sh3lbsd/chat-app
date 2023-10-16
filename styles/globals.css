@@ -86,7 +86,7 @@ a {
 ul {
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
+  gap: 1em;
   margin: 0;
   padding: 0;
   justify-items: flex-start;
